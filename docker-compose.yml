@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  pursuer:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist weights across container restarts
+      - ./data/weights:/app/server/weights
+    environment:
+      - PURSUER_ENV=production
+    restart: unless-stopped

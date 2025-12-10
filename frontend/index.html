@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pursuer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loading-text">Initializing Neural Network</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container">
+        <canvas id="canvas"></canvas>
+    </div>
+    
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+    
+    <!-- HUD - Left -->
+    <div id="hud">
+        <div class="hud-item">
+            <span class="hud-label">Time Remaining</span>
+            <span class="hud-value" id="time-display">10.0</span>
+        </div>
+    </div>
+    
+    <!-- Stats Panel - Right -->
+    <div id="stats-panel">
+        <div class="stat-row">
+            <span class="stat-label">Global Episodes</span>
+            <span class="stat-value" id="episodes">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Total Catches</span>
+            <span class="stat-value" id="catches">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Catch Rate</span>
+            <span class="stat-value" id="catch-rate">0%</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Best Time</span>
+            <span class="stat-value" id="best-time">--</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Training Updates</span>
+            <span class="stat-value" id="updates">0</span>
+        </div>
+    </div>
+    
+    <!-- Center Message -->
+    <div id="message"></div>
+    
+    <!-- Instructions -->
+    <div id="instructions">
+        Move your cursor to escape the pursuer<br>
+        Every game trains the shared neural network
+    </div>
+    
+    <!-- Connection Status -->
+    <div id="connection-status">
+        <div class="status-dot"></div>
+        <span>Connecting...</span>
+    </div>
+    
+    <!-- Visual Overlays -->
+    <div class="scanline"></div>
+    <div class="vignette"></div>
+
+    <!-- Scripts -->
+    <script src="network.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>Initializing Neural Network</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container">
+        <canvas id="canvas"></canvas>
+    </div>
+    
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+    
+    <!-- HUD -->
+    <div id="hud">
+        <div class="hud-item">
+            <span class="hud-label">Time Remaining</span>
+            <span class="hud-value" id="time-display">10.0</span>
+        </div>
+    </div>
+    
+    <!-- Stats Panel -->
+    <div id="stats-panel">
+        <div class="stat-row">
+            <span class="stat-label">Global Episodes</span>
+            <span class="stat-value" id="episodes">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Catches</span>
+            <span class="stat-value" id="catches">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Catch Rate</span>
+            <span class="stat-value" id="catch-rate">0%</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Best Time</span>
+            <span class="stat-value" id="best-time">--</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Training Updates</span>
+            <span class="stat-value" id="updates">0</span>
+        </div>
+    </div>
+    
+    <!-- Message Overlay -->
+    <div id="message"></div>
+    
+    <!-- Instructions -->
+    <div id="instructions">
+        Move your cursor to escape the pursuer<br>
+        Every game trains the neural network
+    </div>
+    
+    <!-- Connection Status -->
+    <div id="connection-status">
+        <div class="status-dot"></div>
+        <span>Connecting...</span>
+    </div>
+    
+    <!-- Visual Effects -->
+    <div class="scanline"></div>
+    <div class="vignette"></div>
+    
+    <!-- Scripts -->
+    <script src="network.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

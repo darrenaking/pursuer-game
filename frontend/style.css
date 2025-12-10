@@ -1,0 +1,338 @@
+/* ============================================
+   The Pursuer - Styles
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff00ff;
+    --neon-green: #00ff88;
+    --neon-red: #ff3333;
+    --dark-bg: #0a0a12;
+    --grid-color: rgba(0, 255, 255, 0.08);
+}
+
+body {
+    background: var(--dark-bg);
+    min-height: 100vh;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--neon-cyan);
+    overflow: hidden;
+    cursor: none;
+}
+
+/* ============================================
+   Game Container
+   ============================================ */
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: 
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        radial-gradient(ellipse at center, rgba(0, 255, 255, 0.03) 0%, transparent 70%);
+    background-size: 40px 40px, 40px 40px, 100% 100%;
+    background-position: center center;
+}
+
+#canvas {
+    display: block;
+}
+
+/* ============================================
+   Custom Cursor
+   ============================================ */
+
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neon-magenta);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    box-shadow: 
+        0 0 10px var(--neon-magenta),
+        0 0 20px var(--neon-magenta),
+        inset 0 0 10px rgba(255, 0, 255, 0.3);
+    transition: transform 0.05s ease-out;
+}
+
+.custom-cursor::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: var(--neon-magenta);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px var(--neon-magenta);
+}
+
+.custom-cursor.caught {
+    animation: caught-pulse 0.3s ease-out;
+}
+
+@keyframes caught-pulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(2); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+/* ============================================
+   HUD
+   ============================================ */
+
+#hud {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hud-item {
+    margin-bottom: 12px;
+    font-size: 12px;
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.hud-label {
+    opacity: 0.6;
+    font-size: 10px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.hud-value {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* ============================================
+   Stats Panel
+   ============================================ */
+
+#stats-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    font-family: 'Orbitron', sans-serif;
+    text-align: right;
+    background: rgba(10, 10, 18, 0.8);
+    padding: 15px 20px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.stat-label {
+    opacity: 0.5;
+}
+
+.stat-value {
+    color: var(--neon-green);
+    text-shadow: 0 0 8px var(--neon-green);
+}
+
+/* ============================================
+   Message Overlay
+   ============================================ */
+
+#message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 200;
+    text-align: center;
+}
+
+#message.show {
+    animation: message-flash 1.5s ease-out forwards;
+}
+
+#message.caught {
+    color: var(--neon-magenta);
+    text-shadow: 
+        0 0 20px var(--neon-magenta),
+        0 0 40px var(--neon-magenta),
+        0 0 80px var(--neon-magenta);
+}
+
+#message.died {
+    color: var(--neon-red);
+    text-shadow: 
+        0 0 20px var(--neon-red),
+        0 0 40px var(--neon-red);
+}
+
+@keyframes message-flash {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    40% { transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ============================================
+   Instructions
+   ============================================ */
+
+#instructions {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    opacity: 0.4;
+    text-align: center;
+    letter-spacing: 1px;
+    z-index: 100;
+}
+
+/* ============================================
+   Connection Status
+   ============================================ */
+
+#connection-status {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--neon-red);
+    box-shadow: 0 0 10px var(--neon-red);
+}
+
+.status-dot.connected {
+    background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+/* ============================================
+   Overlays
+   ============================================ */
+
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* ============================================
+   Loading State
+   ============================================ */
+
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#loading.hidden {
+    display: none;
+}
+
+.loading-text {
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(0, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    height: 100%;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 10px var(--neon-cyan);
+    width: 0%;
+    animation: load-progress 2s ease-out forwards;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes load-progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
